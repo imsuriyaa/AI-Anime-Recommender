@@ -8,7 +8,7 @@ class AnimeDataLoader:
     def load_and_process(self):
         df = pd.read_csv(self.original_csv , encoding='utf-8' , on_bad_lines='skip').dropna()
 
-        required_cols = {'Name' , 'Genres','sypnopsis'}
+        required_cols = {'Name', 'Genres','sypnopsis'}
 
         missing = required_cols - set(df.columns)
         if missing:

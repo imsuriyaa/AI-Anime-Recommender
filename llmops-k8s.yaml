@@ -1,0 +1,44 @@
+########################## Deployment File ##########################
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: llmops-app
+  labels:
+    app: llmops
+spec:
+  replicas: 1 # This will create 1 replica of the app
+  selector:
+    matchLabels:
+      app: llmops
+  template:
+    metadata:
+      labels:
+        app: llmops
+    spec:
+      containers:
+      - name: llmops-container
+        image: llmops-app:latest  # Use local image
+        imagePullPolicy: IfNotPresent # This will use or pull the local image if it is not present in the registry
+        ports:
+          - containerPort: 8501
+        envFrom:
+          - secretRef:
+              name: llmops-secrets # This will use the secrets from the secret file or .env
+
+
+########################## Service File ##########################
+# This will create a load balancer
+# Load balancer will be used to access the app from outside the cluster
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: llmops-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: llmops
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8501

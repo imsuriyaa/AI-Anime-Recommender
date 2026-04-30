@@ -21,7 +21,6 @@ class AnimeRecommender:
             | StrOutputParser()
         )
 
-
     def _load_llm(self):
         try:
             llm = ModelLoader().load_llm()

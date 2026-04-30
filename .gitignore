@@ -9,6 +9,11 @@ venv/
 *.egg
 *.log
 
+# Vector database files
+*.db
+*.sqlite
+*.sqlite3
+
 # OS & editor files
 .DS_Store
 .vscode/

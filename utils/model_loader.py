@@ -13,6 +13,7 @@ from langchain_groq import ChatGroq
 from langchain_google_genai import ChatGoogleGenerativeAI, GoogleGenerativeAIEmbeddings
 from logger import GLOBAL_LOGGER as log
 from exception.custom_exception import CustomException
+from langchain_huggingface import HuggingFaceEmbeddings
 
 
 class ApiKeyManager:
@@ -97,6 +98,8 @@ class ModelLoader:
             elif provider == "openai":
                 return OpenAIEmbeddings(model=model_name,
                                         openai_api_key=self.api_key_mgr.get("OPENAI_API_KEY")) #type: ignore
+            elif provider == "huggingface":
+                return HuggingFaceEmbeddings(model_name=model_name) #type: ignore
             else:
                 log.error("Unsupported embedding provider", provider=provider)
                 raise ValueError(f"Unsupported embedding provider: {provider}")

@@ -20,5 +20,3 @@ if query:
         response = pipeline.recommend(query)
         st.markdown("### Recommendations")
         st.write(response)
-
-

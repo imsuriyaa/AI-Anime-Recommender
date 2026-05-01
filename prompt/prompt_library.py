@@ -23,3 +23,8 @@ anime_chat_prompt = ChatPromptTemplate.from_messages([
         ("human", "{question}")
     ])
 
+
+PROMPT_REGISTRY = {
+    "anime_recommendation": anime_chat_prompt
+}
+

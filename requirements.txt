@@ -13,3 +13,8 @@ langchain-chroma
 structlog
 pandas
 sentence-transformers
+torchvision
+fastapi
+uvicorn
+jinja2
+python-multipart

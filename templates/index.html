@@ -1,0 +1,37 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>TodoApp</title>
+</head>
+<body>
+
+  <h1>Anime Recommender System</h1>
+
+    <form action="/submit" method="post">
+        <label for="anime_preferences">Anime Preference:</label>
+        <input type="text" id="anime_preferences" name="anime_preferences" placeholder="Enter your anime prefernces eg. : light hearted anime with school settings">
+        <input type="submit" value="Submit">
+    </form>
+    
+    
+    {% if recommendations %}
+        
+        <p>{{ recommendations['summary'] }}</p>
+        <h2>Recommended Anime</h2>
+        <div class="recommendations">
+            {% for rec in recommendations['recommendations'] %}
+            <div class="recommendation-card">
+                <h3>{{ rec.title }}</h3>
+                <p><strong>Plot:</strong> {{ rec.plot }}</p>
+                <p><strong>Why it matches:</strong> {{ rec.reason }}</p>
+            </div>
+            {% endfor %}
+        </div>
+        
+    {% endif %}
+
+
+    
+</body>
+</html>
